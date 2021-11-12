@@ -1,5 +1,5 @@
 # data preprocessor
-import dataset_reader
+from dataset_reader import DatasetReader
 import unicodedata
 import re
 import os
@@ -22,5 +22,13 @@ class Preprocessor:
     
     def preprocess_dataset(self, dataset):
         for i in range(len(dataset)):
-            dataset[i]['text'] = self.preprocess(dataset[i]['text'])
+            dataset[i] = self.preprocess(dataset[i])
         return dataset
+
+if __name__ == '__main__':
+    # test
+    preprocessor = Preprocessor()
+    datasetReader = DatasetReader('dataset')
+    dataset = datasetReader.read_dataset()
+    dataset = preprocessor.preprocess_dataset(dataset)
+    print(dataset[0])

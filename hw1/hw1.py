@@ -1,6 +1,6 @@
 # finding textually similar documents based on Jaccard similarity using the shingling, minhashing, and locality-sensitive hashing (LSH) techniques and corresponding algorithms
-import dataset_reader
-import preprocess
+from dataset_reader import DatasetReader
+from preprocess import Preprocessor
 import numpy as np
 import math
 import time
@@ -20,6 +20,7 @@ class Shingling:
         shingling = []
         for i in range(len(doc) - self.k + 1):
             shingling.append(self.hash_shingle(doc[i:i+self.k]))
+            # shingling.append(doc[i:i+self.k])
         return shingling
     
     def hash_shingle(self, shingle):
@@ -28,6 +29,8 @@ class Shingling:
 # A class CompareSets that computes the Jaccard similarity of two sets of integers – two sets of hashed shingles.
 class CompareSets:
     def jaccard_similarity(self, set1, set2):
+        set1 = set(set1)
+        set2 = set(set2)
         intersection = len(set1.intersection(set2))
         union = len(set1.union(set2))
         return intersection / union
@@ -65,3 +68,20 @@ class LSH:
         self.n = n
         self.m = m
     
+
+if __name__ == "__main__":
+    start = time.time()
+    # read the dataset
+    dataset_reader = DatasetReader("dataset")
+    dataset = dataset_reader.read_dataset()
+    # preprocess the dataset
+    preprocess = Preprocessor()
+    dataset = preprocess.preprocess_dataset(dataset)
+    # create a Shingling object
+    shingling = Shingling()
+    # create a Shingling object
+    shingling_list = shingling.create_shingling(dataset)
+    compareSets = CompareSets()
+    similarity = compareSets.jaccard_similarity(shingling_list[0], shingling_list[3])
+    # print(shingling_list[0])
+    print(similarity)
