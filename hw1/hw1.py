@@ -8,9 +8,12 @@ import math
 import time
 import hashlib
 import random
-
+from scipy import integrate
 
 # A class Shingling that constructs k–shingles of a given length k from given datasets, computes a hash value for each unique shingle, and represents the document in the form of an ordered set of its hashed k-shingles.
+
+
+
 class Shingling:
     def __init__(self, k=6):
         self.k = k
@@ -124,6 +127,7 @@ class LSH:
     def lsh(self, signature_matrix, threshold, lsh_buckets):
 
         bands_num, rows_num = self.calculate_lsh_params(self.n, threshold)
+
         print(bands_num, rows_num)
         signature_matrix = np.array(signature_matrix)
         candidate_pairs = set()
@@ -156,7 +160,7 @@ if __name__ == "__main__":
     # preprocess the dataset
     preprocess = Preprocessor()
     dataset = preprocess.preprocess_dataset(dataset)
-    dataset_test = dataset[:5]
+    dataset_test = dataset[:10]
     # create a Shingling object
     shingling = Shingling()
     shingling_list = shingling.create_shingling(dataset_test)
@@ -181,6 +185,7 @@ if __name__ == "__main__":
     print(candidate_pairs)
 
     for pair in candidate_pairs:
+        print('Similar Document Pair:' + str(pair))
         print(compare_sets.jaccard_similarity(shingling_list[pair[0]], shingling_list[pair[1]]))
         print(compareSignatures.signature_similarity(signature_list[pair[0]], signature_list[pair[1]]))
 
