@@ -158,9 +158,8 @@ if __name__ == "__main__":
     # create a Shingling object
     shingling = Shingling()
     shingling_list = shingling.create_shingling(dataset_test)
-    # pprint(shingling_list[0])
     whole_shingling_list = shingling.get_shingling_list(dataset_test)
-    # print(len(whole_shingling_list))
+
     # compute the Jaccard similarity of two sets of integers – two sets of hashed shingles
     compare_sets = CompareSets()
     jaccard_similarity_matrix = np.zeros((len(dataset_test), len(dataset_test)))
@@ -171,14 +170,12 @@ if __name__ == "__main__":
         jaccard_similarity_matrix[i] = ['%.3f' % elem for elem in jaccard_similarity_matrix[i]]
     print('Jaccard Similarity Matrix of Dataset')
     print(jaccard_similarity_matrix)
-    # print(compare_sets.jaccard_similarity(shingling_list[0], shingling_list[1]))
 
     dataset_test_shingling_size = len(whole_shingling_list)
     # create a MinHashing object
-    # print(dataset_test_shingling_size)
     minhashing = MinHashing()
     minhash_signatures = minhashing.compute_minhash_signatures(shingling_list, dataset_test_shingling_size)
-    # pprint(minhash_signatures[0])
+
     # create a CompareSignatures object
     compare_signatures = CompareSignatures()
     signatures_similarity_matrix = np.zeros((len(dataset_test), len(dataset_test)))
@@ -189,16 +186,12 @@ if __name__ == "__main__":
         signatures_similarity_matrix[i] = ['%.3f' % elem for elem in signatures_similarity_matrix[i]]
     print('Signature Similarity Matrix of Dataset')
     print(signatures_similarity_matrix)
-    # print(compare_signatures.signature_similarity(minhash_signatures[0], minhash_signatures[1]))
+
 
     # create a LSH object
-    # lsh = LSH()
-    # lsh_signatures = lsh.compute_LSH_signatures(shingling_list, dataset_test_shingling_size)
-    # print(compare_signatures.signature_similarity(lsh_signatures[0], lsh_signatures[1]))
     lshashing = LSH()
     threshold = 0.4
     candidate_pairs = lshashing.lsh(minhash_signatures, threshold, 300)
-    #print(candidate_pairs)
 
     for pair in candidate_pairs:
         if (compare_sets.jaccard_similarity(shingling_list[pair[0]], shingling_list[pair[1]])) > threshold:
