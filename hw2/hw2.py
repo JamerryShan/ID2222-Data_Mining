@@ -43,4 +43,6 @@ def larger_frequent_sets(frequent_sets, frequent_items):
     for itemset in frequent_sets:
         for item in frequent_items:
             # add item that not be included in itemsets to set
-            itemset
+            if len(itemset) == 1:
+                itemset = [itemset]
+            itemset.append(item)
