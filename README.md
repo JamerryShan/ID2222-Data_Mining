@@ -4,7 +4,7 @@
 
 This is the submission of homework 1 of the data mining(ID2222) course, finding similar items: textually similar documents, which is based on Python.
 
-### library dependencies
+#### library dependencies
 
 ```hw1.py```  
 itertools  
@@ -17,5 +17,7 @@ re
 ```dataset_reader.py```  
 os  
 json  
-### Run
+#### Run
 run with ```python3 hw1.py```
+
+### Homework 2: Discovery of Frequent Itemsets and Association Rules
