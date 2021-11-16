@@ -4,17 +4,17 @@
 
 This is the submission of homework 1 of the data mining(ID2222) course, finding similar items: textually similar documents, which is based on Python.
 
- #### library dependencies
+#### library dependencies
 
- + ```hw1.py```  
+```hw1.py```  
 itertools  
 numpy  
 math  
 time  
- + ```prepocess.py```   
+```prepocess.py```   
 unicodedata  
 re  
-+ ```dataset_reader.py```  
+```dataset_reader.py```  
 os  
 json  
 #### Run
