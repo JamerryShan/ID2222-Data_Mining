@@ -92,6 +92,7 @@ class Apriori:
 # test
 apriori = Apriori(dataset, s)
 frequent_item = apriori.get_1_item_set()
+print(len(frequent_item))
 # print('frequent_item:', frequent_item)
 # print('len(frequent_item):', len(frequent_item))
 print('len(apriori.dataset):', len(apriori.dataset))
