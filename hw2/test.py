@@ -24,7 +24,7 @@ def get_support_threshold(dataset):
 print('support threshold:', int(get_support_threshold(dataset)))
 
 s = get_support_threshold(dataset)
-
+s = 3000
 # finding frequent itemsets of integers with support at least s in the dataset
 import numpy as np
 import pandas as pd
