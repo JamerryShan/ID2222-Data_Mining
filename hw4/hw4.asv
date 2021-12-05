@@ -22,19 +22,17 @@ function [clusters, L]=algorithm(E, k)
     A= full(adjacency(graph(As)));
     figure(1);
     spy(A);
-    figure(2);
-    plot(graph(A),'Layout','force');
-    figure(3);
-    h=plot(graph(A),'Layout','force');
+    
        
     % step 2
     D=diag(sum(A,2));
     L=(D^(-1/2)*A*D^(-1/2));
-    
-    
+
     % step 3
     [V,d]=eigs(L,k);
-      
+    figure(2);
+    plot(sort(diag(d));
+    
     %step 4
     Y=V./sum(V.*V,2).^(1/2);
     
@@ -44,17 +42,7 @@ function [clusters, L]=algorithm(E, k)
     
     %step 6
     cluster_colors=hsv(k);
-    for i=1:k
-        cluster_members=find(clusters==i);
-        highlight(h, cluster_members , 'NodeColor', cluster_colors(i,:))
-    end
-    figure(4)
-    Lap = D - A;
-    [F_V,~] = eigs(Lap,2,'SA');
-    plot(sort(F_V(:,2)),'-*')
-    figure(5)
-    [F_V,~] = eigs(L,2,'SA');
-    plot(sort(F_V(:,2)),'-*')
+
 
     % Visualization of the Sorted Fiedler Vector
 end
