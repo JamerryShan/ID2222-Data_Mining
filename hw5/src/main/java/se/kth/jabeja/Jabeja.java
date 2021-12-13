@@ -109,7 +109,7 @@ public class Jabeja {
 
       int dpq = getDegree(nodep, nodeq.getColor());
       int dqp = getDegree(nodeq, nodep.getColor());
-      double newvalue = Math.pow(dpq, config.getAlpha()) + Math.pow(dpq, config.getAlpha());
+      double newvalue = Math.pow(dpq, config.getAlpha()) + Math.pow(dqp, config.getAlpha());
 
       // if (new × Tr > old) ∧ (new > higest) then
       if (newvalue * T > oldvalue && newvalue > highestBenefit) {
