@@ -17,8 +17,14 @@ public class Jabeja {
   private final List<Integer> nodeIds;
   private int numberOfSwaps;
   private int round;
-  private float T;
+  // private float T;
   private boolean resultFileCreated = false;
+  private int cooling_round = 0;
+  private int waiting_rounds = 0;
+  private double T;
+  private double MAX_T;
+  private final double MIN_T = Math.pow(10, -5);
+  private boolean annealing = true;
 
   //-------------------------------------------------------------------
   public Jabeja(HashMap<Integer, Node> graph, Config config) {
@@ -27,7 +33,15 @@ public class Jabeja {
     this.round = 0;
     this.numberOfSwaps = 0;
     this.config = config;
-    this.T = config.getTemperature();
+    // this.T = config.getTemperature();
+     if (this.annealing) {
+      this.T = 1;
+      this.MAX_T = 1;
+      config.setDelta((float) 0.9);
+    }
+    else {
+     this.T = config.getTemperature();
+    }
   }
 
 
@@ -50,11 +64,42 @@ public class Jabeja {
    */
   private void saCoolDown(){
     // TODO for second task
-    if (T > 1)
+    if (this.annealing){
+      // my cool down function
+      cooling_round++;
+      T *= config.getDelta();
+      if (T < MIN_T) {
+        T = MIN_T;
+      }
+      if (T == MIN_T) {
+      waiting_rounds++;
+        if (waiting_rounds == 400) {
+          T = 1;
+          waiting_rounds = 0;
+          cooling_round = 0;
+        }
+      }
+    }
+    else {
+      // original cool down function
+      if (T > 1)
       T -= config.getDelta();
-    if (T < 1)
+      if (T < 1)
       T = 1;
+    }
   }
+  
+    /**
+     my acceptance function
+     acceptance probability: a_p = e^((new - old) / T)
+     return boolen result and a_p
+     */
+  private double acceptanceProbability(double old, double new_, double T) {
+    double a_p = Math.exp((new_ - old) / T);
+    return a_p;
+  }
+
+
 
   /**
    * Sample and swap algorith at node p
@@ -96,6 +141,8 @@ public class Jabeja {
 
     Node bestPartner = null;
     double highestBenefit = 0;
+    boolean updateflag = false;
+    double currentBenefit = 0;
 
     // TODO
     // for q in nodes do
@@ -112,11 +159,28 @@ public class Jabeja {
       double newvalue = Math.pow(dpq, config.getAlpha()) + Math.pow(dqp, config.getAlpha());
 
       // if (new × Tr > old) ∧ (new > higest) then
-      if (newvalue * T > oldvalue && newvalue > highestBenefit) {
-        // bestPartner = q
-        bestPartner = nodeq;
-        highestBenefit = newvalue;
+      // if (newvalue * T > oldvalue && newvalue > highestBenefit) {
+      //   // bestPartner = q
+      //   bestPartner = nodeq;
+      //   highestBenefit = newvalue;
+      // }
+      if (this.annealing) {
+        double acceptanceprobability = acceptanceProbability(oldvalue, newvalue, T);
+        // if acceptance probability is greater than random number between 0 and 1, and newvalue != oldvalue
+        if (acceptanceprobability > Math.random() && newvalue != oldvalue) {
+          currentBenefit = newvalue;
+          updateflag = true;
+        }
       }
+      else{
+        currentBenefit = newvalue;
+        updateflag = newvalue * T > oldvalue;
+      }
+      if (updateflag && currentBenefit > highestBenefit) {
+        bestPartner = nodeq;
+        highestBenefit = currentBenefit;
+      }
+
     }
 
     return bestPartner;
