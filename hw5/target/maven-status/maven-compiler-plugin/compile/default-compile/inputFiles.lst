@@ -1,10 +1,10 @@
-/afs/kth.se/home/j/s/jshan/Desktop/ID2222-Data_Mining/hw5/src/main/java/se/kth/jabeja/config/Config.java
-/afs/kth.se/home/j/s/jshan/Desktop/ID2222-Data_Mining/hw5/src/main/java/se/kth/jabeja/config/GraphInitColorPolicy.java
-/afs/kth.se/home/j/s/jshan/Desktop/ID2222-Data_Mining/hw5/src/main/java/se/kth/jabeja/Jabeja.java
-/afs/kth.se/home/j/s/jshan/Desktop/ID2222-Data_Mining/hw5/src/main/java/se/kth/jabeja/io/GraphReader.java
-/afs/kth.se/home/j/s/jshan/Desktop/ID2222-Data_Mining/hw5/src/main/java/se/kth/jabeja/rand/RandNoGenerator.java
-/afs/kth.se/home/j/s/jshan/Desktop/ID2222-Data_Mining/hw5/src/main/java/se/kth/jabeja/Node.java
-/afs/kth.se/home/j/s/jshan/Desktop/ID2222-Data_Mining/hw5/src/main/java/se/kth/jabeja/io/FileIO.java
-/afs/kth.se/home/j/s/jshan/Desktop/ID2222-Data_Mining/hw5/src/main/java/se/kth/jabeja/Main.java
-/afs/kth.se/home/j/s/jshan/Desktop/ID2222-Data_Mining/hw5/src/main/java/se/kth/jabeja/io/CLI.java
-/afs/kth.se/home/j/s/jshan/Desktop/ID2222-Data_Mining/hw5/src/main/java/se/kth/jabeja/config/NodeSelectionPolicy.java
+E:\data mining\3\ID2222-Data_Mining\hw5\src\main\java\se\kth\jabeja\Main.java
+E:\data mining\3\ID2222-Data_Mining\hw5\src\main\java\se\kth\jabeja\config\NodeSelectionPolicy.java
+E:\data mining\3\ID2222-Data_Mining\hw5\src\main\java\se\kth\jabeja\io\GraphReader.java
+E:\data mining\3\ID2222-Data_Mining\hw5\src\main\java\se\kth\jabeja\Node.java
+E:\data mining\3\ID2222-Data_Mining\hw5\src\main\java\se\kth\jabeja\config\Config.java
+E:\data mining\3\ID2222-Data_Mining\hw5\src\main\java\se\kth\jabeja\io\CLI.java
+E:\data mining\3\ID2222-Data_Mining\hw5\src\main\java\se\kth\jabeja\io\FileIO.java
+E:\data mining\3\ID2222-Data_Mining\hw5\src\main\java\se\kth\jabeja\rand\RandNoGenerator.java
+E:\data mining\3\ID2222-Data_Mining\hw5\src\main\java\se\kth\jabeja\Jabeja.java
+E:\data mining\3\ID2222-Data_Mining\hw5\src\main\java\se\kth\jabeja\config\GraphInitColorPolicy.java

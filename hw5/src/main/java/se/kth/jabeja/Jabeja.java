@@ -19,10 +19,9 @@ public class Jabeja {
   private int round;
   // private float T;
   private boolean resultFileCreated = false;
-  private int cooling_round = 0;
+  // private int cooling_round = 0;
   private int waiting_rounds = 0;
   private double T;
-  private double MAX_T;
   private final double MIN_T = Math.pow(10, -5);
   private boolean annealing = true;
 
@@ -36,8 +35,6 @@ public class Jabeja {
     // this.T = config.getTemperature();
      if (this.annealing) {
       this.T = 1;
-      this.MAX_T = 1;
-      config.setDelta((float) 0.9);
     }
     else {
      this.T = config.getTemperature();
@@ -51,7 +48,6 @@ public class Jabeja {
       for (int id : entireGraph.keySet()) {
         sampleAndSwap(id);
       }
-
       //one cycle for all nodes have completed.
       //reduce the temperature
       saCoolDown();
@@ -66,7 +62,7 @@ public class Jabeja {
     // TODO for second task
     if (this.annealing){
       // my cool down function
-      cooling_round++;
+      // cooling_round++;
       T *= config.getDelta();
       if (T < MIN_T) {
         T = MIN_T;
@@ -76,7 +72,7 @@ public class Jabeja {
         if (waiting_rounds == 400) {
           T = 1;
           waiting_rounds = 0;
-          cooling_round = 0;
+          // cooling_round = 0;
         }
       }
     }
@@ -95,7 +91,8 @@ public class Jabeja {
      return boolen result and a_p
      */
   private double acceptanceProbability(double old, double new_, double T) {
-    double a_p = Math.exp((new_ - old) / T);
+    double a_p = 1/(1+Math.exp((old - new_) / T));
+    // double a_p = Math.exp((new_ - old) / T);
     return a_p;
   }
 
